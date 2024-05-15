@@ -1,0 +1,15 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "console": "integratedTerminal",
+      "name": "Debug",
+      "type": "node",
+      "request": "launch",
+      "runtimeExecutable": "make",
+      "runtimeArgs": ["serve-api"],
+      "sourceMaps": true,
+      "cwd": "${workspaceRoot}"
+    }
+  ]
+}

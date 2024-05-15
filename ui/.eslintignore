@@ -1,0 +1,8 @@
+node_modules
+dist
+build
+types
+__mocks__
+test
+*.test.*
+jest.config.js

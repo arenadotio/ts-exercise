@@ -1,0 +1,75 @@
+{
+    "root": true,
+    "parser": "@typescript-eslint/parser",
+    "parserOptions": {
+	"ecmaVersion": 2020,
+	"sourceType": "module",
+	"ecmaFeatures": {
+	    "jsx": true
+	},
+	"project": "./tsconfig.json"
+    },
+    "extends": [
+	"eslint:recommended",
+	"plugin:@typescript-eslint/eslint-recommended",
+	"plugin:@typescript-eslint/recommended"
+    ],
+    "settings": {
+	"react": {
+	    "version": "detect"
+	}
+    },
+    "plugins": [
+	"@typescript-eslint"
+    ],
+    "rules": {
+	"@typescript-eslint/no-unused-vars": [
+	    "error", {
+		"varsIgnorePattern": "^_",
+		"argsIgnorePattern": "^_"
+	    }
+	],
+	"@typescript-eslint/no-explicit-any": "off",
+	"camelcase": "off",
+	"@typescript-eslint/naming-convention": [
+	    "error",
+	    {
+		"selector": "default",
+		"format": ["camelCase"]
+	    },
+	    {
+		"selector": "variable",
+		"format": ["camelCase", "PascalCase", "UPPER_CASE"],
+		"leadingUnderscore": "allow"
+	    },
+	    {
+		"selector": "parameter",
+		"format": ["camelCase", "PascalCase", "snake_case"],
+		"leadingUnderscore": "allow"
+	    },
+	    {
+		"selector": "memberLike",
+		"modifiers": ["private"],
+		"format": ["camelCase"],
+		"leadingUnderscore": "require"
+	    },
+	    {
+		"selector": "typeLike",
+		"format": ["PascalCase"]
+	    },
+	    {
+		"selector": "parameter",
+		"modifiers": ["destructured"],
+		"format": null
+	    },
+	    {
+		"selector": "objectLiteralProperty",
+		"format": null
+	    },
+	    {
+		"selector": "typeProperty",
+		"format": null
+	    }
+	]
+    }
+}

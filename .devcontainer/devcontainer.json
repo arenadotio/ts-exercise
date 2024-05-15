@@ -1,0 +1,56 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:1-20-bullseye",
+  "features": {
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "moby": true,
+      "installDockerBuildx": true,
+      "version": "20.10",
+      "dockerDashComposeVersion": "2.24.6"
+    }
+  },
+  "mounts": [
+    "src=${localWorkspaceFolderBasename}-node_modules-ui,dst=${containerWorkspaceFolder}/ui/node_modules,type=volume",
+    "src=${localWorkspaceFolderBasename}-node_modules-api,dst=${containerWorkspaceFolder}/api/node_modules,type=volume"
+  ],
+  "postCreateCommand": "sudo chown -R node:node .",
+  "forwardPorts": [
+    3000,
+    3001
+  ],
+  "portsAttributes": {
+    "3000": {
+      "label": "UI",
+      "onAutoForward": "silent",
+      "requireLocalPort": true
+    },
+    "3001": {
+      "label": "API",
+      "onAutoForward": "silent"
+    }
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "mutantdino.resourcemonitor",
+        "streetsidesoftware.code-spell-checker",
+        "timonwong.shellcheck",
+        "GitHub.copilot",
+        "GitHub.copilot-chat",
+        "esbenp.prettier-vscode",
+        "firsttris.vscode-jest-runner"
+      ],
+      "settings": {
+        "[typescript]": {
+          "editor.defaultFormatter": "esbenp.prettier-vscode"
+        },
+        "eslint.workingDirectories": [
+          {
+            "mode": "auto"
+          }
+        ]
+      }
+    }
+  },
+  "containerUser": "node",
+  "remoteUser": "node"
+}

@@ -1,0 +1,31 @@
+ARG BASE_IMAGE_NAME
+
+FROM --platform=linux/amd64 $BASE_IMAGE_NAME as builder
+
+# set environment variables
+ARG GITHUB_PACKAGES_TOKEN
+ENV GITHUB_PACKAGES_TOKEN=$GITHUB_PACKAGES_TOKEN
+
+# set working directory
+WORKDIR /app
+
+# copy dependencies files and install dependencies
+COPY package.json .
+COPY package-lock.json .
+COPY .npmrc .
+COPY tsconfig.json .
+RUN npm ci
+COPY src/ src/
+RUN npm run build
+
+# Use a base image with Node.js installed
+FROM --platform=linux/amd64 node:20.10.0-alpine3.18
+
+# Set the working directory
+WORKDIR /app
+
+# copy /app from builder
+COPY --from=builder /app /app
+
+# Run the Node server
+CMD ["npm", "run", "start"]
