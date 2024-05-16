@@ -13,6 +13,7 @@ serve-ui() {
 
 serve-api() {
   cd api
+  npm ci
   npm run dev
 }
 
